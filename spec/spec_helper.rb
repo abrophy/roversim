@@ -1,5 +1,4 @@
 require 'bundler/setup'
-require 'roversim_abrophy'
 
 require_relative '../lib/controller'
 require_relative '../lib/rover'
