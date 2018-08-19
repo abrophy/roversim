@@ -2,6 +2,7 @@ require 'bundler/setup'
 require 'roversim_abrophy'
 
 require_relative '../lib/controller'
+require_relative '../lib/rover'
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
