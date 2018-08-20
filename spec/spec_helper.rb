@@ -2,6 +2,11 @@ require 'bundler/setup'
 
 require_relative '../lib/controller'
 require_relative '../lib/rover'
+require_relative '../lib/zone'
+require_relative '../lib/tracers/north'
+require_relative '../lib/tracers/east'
+require_relative '../lib/tracers/south'
+require_relative '../lib/tracers/west'
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
