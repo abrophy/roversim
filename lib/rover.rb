@@ -4,27 +4,35 @@ require 'roversim_abrophy/version'
 class Rover
   attr_accessor :position, :direction
 
-  DIRECTION_LIST = ['N', 'E', 'S', 'W']
-
   def initialize(zone, position)
     @zone = zone
     @position = [position[0], position[1]]
-    @direction_index = DIRECTION_LIST.index(position[2])
+    @direction_key = position[2]
+    @tracer = tracer
   end
 
   def direction
-    DIRECTION_LIST[@direction_index]
+    @tracer.to_s
   end
 
   def turn_left
-    if @direction_index == 0
-      @direction_index = DIRECTION_LIST.length - 1
-    else
-      @direction_index -= 1
-    end
+    @tracer = @tracer.turn_left
   end
 
   def turn_right
-    @direction_index = (@direction_index + 1) % DIRECTION_LIST.length
+    @tracer = @tracer.turn_right
+  end
+
+  def tracer
+    case @direction_key
+    when 'N'
+      Tracers::North.new
+    when 'E'
+      Tracers::East.new
+    when 'S'
+      Tracers::South.new
+    when 'W'
+      Tracers::West.new
+    end
   end
 end
