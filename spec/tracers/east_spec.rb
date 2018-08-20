@@ -22,4 +22,10 @@ RSpec.describe Tracers::East do
       expect(east.move(origin)).to eq(result)
     end
   end
+
+  describe '#to_s' do
+    it 'returns the correct string' do
+      expect(east.to_s).to eq('E')
+    end
+  end
 end

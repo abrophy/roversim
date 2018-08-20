@@ -11,5 +11,9 @@ module Tracers
     def move(origin)
       { x: origin[:x], y: origin[:y] + 1 }
     end
+
+    def to_s
+      'N'
+    end
   end
 end

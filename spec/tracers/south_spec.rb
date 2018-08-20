@@ -21,4 +21,10 @@ RSpec.describe Tracers::South do
       expect(south.move(origin)).to eq(result)
     end
   end
+
+  describe '#to_s' do
+    it 'returns the correct string' do
+      expect(south.to_s).to eq('S')
+    end
+  end
 end
