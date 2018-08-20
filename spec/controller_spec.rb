@@ -1,12 +1,29 @@
 RSpec.describe Controller do
-  before do
-    @input_string = '88'\
-      '12 E'\
-      'MMLMRMMRRMML'
-  end
+  let(:rover) { double }
+  let(:controller) { Controller.new(rover) }
 
-  it 'can be initialized with input' do
-    controller = Controller.new(@input_string)
-    expect(controller.input).to eq(@input_string)
+  describe '#process_instructions' do
+    it 'turns left' do
+      expect(rover).to receive(:turn_left)
+      controller.process_instructions('L')
+    end
+
+    it 'turns right' do
+      expect(rover).to receive(:turn_right)
+      controller.process_instructions('R')
+    end
+
+    it 'moves forward' do
+      expect(rover).to receive(:move)
+      controller.process_instructions('M')
+    end
+
+    it 'correctly processes a chain of instructions' do
+      expect(rover).to receive(:turn_left).ordered
+      expect(rover).to receive(:turn_right).ordered
+      expect(rover).to receive(:move).ordered
+
+      controller.process_instructions('LRM')
+    end
   end
 end
