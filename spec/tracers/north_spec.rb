@@ -1,22 +1,15 @@
 RSpec.describe Tracers::North do
   let(:north) { Tracers::North.new }
 
-
   describe '#turn_left' do
-    let(:west) { Tracers::West }
-
     it 'returns west' do
-      expect_any_instance_of(west)
-      north.turn_left
+      expect(north.turn_left).to be_a Tracers::West
     end
   end
 
   describe '#right' do
-    let(:east) { Tracers::East }
-
     it 'returns east' do
-      expect_any_instance_of(east)
-      north.turn_left
+      expect(north.turn_right).to be_a Tracers::East
     end
   end
 
