@@ -3,16 +3,12 @@ RSpec.describe Tracers::East do
 
 
   describe '#turn_left' do
-    let(:north) { Tracers::North }
-
     it 'returns north' do
       expect(east.turn_left).to be_a Tracers::North
     end
   end
 
   describe '#right' do
-    let(:south) { Tracers::South }
-
     it 'returns south' do
       expect(east.turn_right).to be_a Tracers::South
     end
