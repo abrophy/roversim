@@ -4,7 +4,7 @@ require 'rspec/core/rake_task'
 RSpec::Core::RakeTask.new(:test)
 
 task :run do
-  sh "ruby bin/rover.rb roversim_input"
+  sh "ruby bin/roversim_abrophy.rb roversim_input"
 end
 
 task default: :test
