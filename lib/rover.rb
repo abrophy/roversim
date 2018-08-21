@@ -32,6 +32,10 @@ class Rover
     @y -= 1
   end
 
+  def to_s
+    "#{@x} #{@y} #{direction}"
+  end
+
   def turn_left
     @tracer = @tracer.turn_left
   end

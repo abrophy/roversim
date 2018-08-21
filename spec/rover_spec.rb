@@ -51,4 +51,11 @@ RSpec.describe Rover do
       expect(rover.y).to eq(1)
     end
   end
+
+  describe '#to_s' do
+    it 'returns position and direction in a string' do
+      expect(rover.to_s).to eq('1 2 N')
+    end
+  end
+
 end
