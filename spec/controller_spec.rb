@@ -26,4 +26,11 @@ RSpec.describe Controller do
       controller.process_instructions('LRM')
     end
   end
+
+  describe '#destination' do
+    it 'polls the rover for position data string' do
+      expect(rover).to receive(:to_s)
+      controller.destination
+    end
+  end
 end

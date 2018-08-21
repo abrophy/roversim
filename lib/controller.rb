@@ -19,4 +19,8 @@ class Controller
       end
     end
   end
+
+  def destination
+    @rover.to_s
+  end
 end
