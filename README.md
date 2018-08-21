@@ -1,43 +1,113 @@
 # RoversimAbrophy
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/roversim_abrophy`. To experiment with that code, run `bin/console` for an interactive prompt.
+This gem serves as a solution to an OOP problem where it is required to
+build out a class heirarchy to simulate and predict the movement of a
+rover on mars
 
-TODO: Delete this and the text above, and describe your gem
+## Installation and Usage
 
-## Installation
+There are three ways to install and use the gem:
 
-Add this line to your application's Gemfile:
+### clone from github
 
-```ruby
-gem 'roversim_abrophy'
+```
+git clone https://github.com/abrophy/roversim.git
 ```
 
-And then execute:
+after cloning the repo onto your computer, enter the directory and run:
+```
+bundle install
+```
+To install the dev dependencies.
 
-    $ bundle
+A sample input file has been provided with the repo as
+`roversim_input.example`.
 
-Or install it yourself as:
+You can then use rake to process this sample input file:
 
-    $ gem install roversim_abrophy
+```
+rake run roversim_input.example
+```
 
-## Usage
+simply replace the sample input filename with your own if desired.
 
-TODO: Write usage instructions here
+### install gem for command line usage
 
-## Development
+The gem is hosted on rubygems so it can be installed to your environment
+through a simple gem install:
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+```
+gem install roversim_abrophy
+```
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+to process an input file call from command line via
 
-## Contributing
+```
+roversim abrophy input_file_name
+```
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/roversim_abrophy. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+### requiring it into an existing ruby project
+
+Add the gem to your gemfile:
+
+```ruby
+gem 'roversim_abrophy', '1.2.0'
+```
+
+it can then be required and used to process inputs already split into an
+array:
+
+```ruby
+require 'roversim_abrophy'
+
+input_array = [
+  '88',
+  '12 E',
+  'MMLMRMMRRMML'
+]
+
+RoversimAbrophy.process(input_array)
+#=>'3 3 S'
+```
+
+## Testing
+
+After cloning the repo and installing dev dependencies with bundle, you can run tests against the codebase through:
+
+```
+rake test
+```
+
+## Notes on Design and testing
+
+While working out the design for these classes the most interesting
+relationship I found was between the tracers and the rover class. I
+inject the rover class into the tracers when moving so that the tracers
+are responsible for knowing how to update the coordinates of the rover.
+
+The Tracer class is called when performing turns and returns the correct
+new tracer class depending on the turn which also holds the correct
+movement behavior for the new direction.
+
+Actually generating the correct tracer for the rover class on
+initialization is done with a case statement, though I know this is an
+OOP smell, given the time constraint and the class heirarchy ( there
+will likely be no new cardinal directions added anytime soon and the
+rover operates on a two dimensional grid ), I don't see anything wrong
+with the implementation.
+
+I used RSpec to cover unit and integration tests, and used rubocop to test
+code style across the project.
+
+The only complaint from rubocop I haven't dealt with is the length of
+the #process_instructions method in the controller.
+
+This is due to the message parsing happening in the controller class.
+
+If the message structure or nature of the input were to change in the
+future I would implement a new message parsing class to deal with this
+issue, but for now am happy with the implementation.
 
 ## License
 
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
-
-## Code of Conduct
-
-Everyone interacting in the RoversimAbrophy project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/roversim_abrophy/blob/master/CODE_OF_CONDUCT.md).
