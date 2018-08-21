@@ -57,4 +57,11 @@ RSpec.describe Rover do
       expect(rover.to_s).to eq('1 2 N')
     end
   end
+
+  describe '#move' do
+    it 'shifts the rover in the current direction' do
+      rover.move
+      expect(rover.y).to eq(3)
+    end
+  end
 end

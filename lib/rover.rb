@@ -20,6 +20,10 @@ class Rover
     @x += 1
   end
 
+  def move
+    @tracer.move(self)
+  end
+
   def decrease_x
     @x -= 1
   end
