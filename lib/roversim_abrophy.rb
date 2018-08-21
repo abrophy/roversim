@@ -8,16 +8,20 @@ require_relative './tracers/east'
 require_relative './tracers/south'
 require_relative './tracers/west'
 
-# Generates classes from input and returns destination
-input_array = []
-until ARGF.eof
-  input = ARGF.gets.split("\n")
-  input_array.push(input[0])
+module RoversimAbrophy
+  # Generates classes from input and returns destination
+  def self.process(input_array)
+    zone = Zone.new(input_array[0])
+    rover = Rover.new(zone, input_array[1])
+    controller = Controller.new(rover)
+
+    puts zone.inspect
+    puts rover.inspect
+    puts controller.inspect
+
+    controller.process_instructions(input_array[2])
+    controller.destination.tap do |destination|
+      puts destination
+    end
+  end
 end
-
-zone = Zone.new(input_array[0])
-rover = Rover.new(zone, input_array[1])
-controller = Controller.new(rover)
-
-controller.process_instructions(input_array[2])
-puts controller.destination
