@@ -8,8 +8,8 @@ require_relative './tracers/east'
 require_relative './tracers/south'
 require_relative './tracers/west'
 
+# Generates classes from input and returns destination
 module RoversimAbrophy
-  # Generates classes from input and returns destination
   def self.process(input_array)
     zone = Zone.new(input_array[0])
     rover = Rover.new(zone, input_array[1])

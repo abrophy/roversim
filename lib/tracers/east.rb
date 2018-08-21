@@ -1,4 +1,5 @@
 module Tracers
+  # Handles Eastern travel by rover
   class East
     def turn_left
       Tracers::North.new

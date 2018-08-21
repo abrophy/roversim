@@ -2,7 +2,7 @@ require 'roversim_abrophy/version'
 
 # Rover class that stores rover position state
 class Rover
-  attr_accessor :direction, :x, :y
+  attr_accessor :x, :y
 
   def initialize(zone, position_string)
     @zone = zone
