@@ -8,8 +8,8 @@ module Tracers
       Tracers::South.new
     end
 
-    def move(origin)
-      { x: origin[:x] + 1, y: origin[:y] }
+    def move(rover)
+      rover.increase_x
     end
 
     def to_s

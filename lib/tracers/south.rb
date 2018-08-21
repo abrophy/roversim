@@ -8,8 +8,8 @@ module Tracers
       Tracers::West.new
     end
 
-    def move(origin)
-      { x: origin[:x], y: origin[:y] - 1 }
+    def move(rover)
+      rover.decrease_y
     end
 
     def to_s

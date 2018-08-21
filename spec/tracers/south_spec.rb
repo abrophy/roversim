@@ -1,5 +1,6 @@
 RSpec.describe Tracers::South do
   let(:south) { Tracers::South.new }
+  let(:rover) { double }
 
   describe '#turn_left' do
     it 'returns east' do
@@ -14,11 +15,9 @@ RSpec.describe Tracers::South do
   end
 
   describe '#move' do
-    let(:origin) { { x: 0, y: 0 } }
-    let(:result) { { x: 0, y: -1 } }
-
-    it 'returns the correct result coordinates' do
-      expect(south.move(origin)).to eq(result)
+    it 'decreases rover y coordinate value' do
+      expect(rover).to receive(:decrease_y)
+      south.move(rover)
     end
   end
 
