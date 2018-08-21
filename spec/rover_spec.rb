@@ -1,6 +1,6 @@
 RSpec.describe Rover do
   let(:zone_size) { [8, 8] }
-  let(:position) { [1, 2, 'N'] }
+  let(:position) { '12 N' }
   let(:zone) { double }
   let(:rover) { Rover.new(zone, position) }
 

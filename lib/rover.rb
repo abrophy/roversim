@@ -4,11 +4,13 @@ require 'roversim_abrophy/version'
 class Rover
   attr_accessor :direction, :x, :y
 
-  def initialize(zone, position)
+  def initialize(zone, position_string)
     @zone = zone
-    @x = position[0]
-    @y = position[1]
-    @direction_key = position[2]
+    parsed_position = position_string.split(' ')
+    coordinates = parsed_position[0].split('')
+    @x = coordinates[0].to_i
+    @y = coordinates[1].to_i
+    @direction_key = parsed_position[1]
     @tracer = tracer
   end
 
