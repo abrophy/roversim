@@ -57,5 +57,4 @@ RSpec.describe Rover do
       expect(rover.to_s).to eq('1 2 N')
     end
   end
-
 end
