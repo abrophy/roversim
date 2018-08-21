@@ -14,14 +14,7 @@ module RoversimAbrophy
     zone = Zone.new(input_array[0])
     rover = Rover.new(zone, input_array[1])
     controller = Controller.new(rover)
-
-    puts zone.inspect
-    puts rover.inspect
-    puts controller.inspect
-
     controller.process_instructions(input_array[2])
-    controller.destination.tap do |destination|
-      puts destination
-    end
+    controller.destination
   end
 end
